@@ -1,11 +1,8 @@
 from django.db import models
 
-# Create your models here.
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-
-MAGIC_NUM = 10  # Количество выводимых постов
 
 
 class Group(models.Model):
@@ -31,8 +28,8 @@ class Post(models.Model):
     group = models.ForeignKey(Group,
                               blank=True, null=True,
                               on_delete=models.SET_NULL,
-                              related_name='groups',
+                              related_name='posts',
                               verbose_name='Группа')
 
     class Meta:
-        ordering = ['-pub_date'][:MAGIC_NUM]
+        ordering = ['-pub_date']
